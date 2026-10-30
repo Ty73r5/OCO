@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 *.part.mp4
 output/*.wav
+output/*.mp4
