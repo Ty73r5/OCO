@@ -95,7 +95,7 @@ def assemble(pl, T, out):
     open(subs, "w").write(srt(pl))
     mix = os.path.join(MEDIA, "audio", "mix.wav")
     subprocess.check_call(["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-i", mix, "-i", subs,
-                           "-map", "0:v", "-map", "1:a", "-map", "2:s", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+                           "-map", "0:v", "-map", "1:a", "-map", "2:s", "-c:v", "copy", "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "48000", "-c:a", "aac", "-b:a", "192k",
                            "-c:s", "mov_text", "-metadata:s:s:0", "language=eng", "-metadata", "title=The Breathing Planet",
                            "-movflags", "+faststart", "-shortest", out])
 
