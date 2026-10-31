@@ -268,12 +268,16 @@ def build():
                   stage=2, direction=tuple(PANEL_N), distance=660,
                   note="Menu display for the DDA-1 digital control system. [DOC]",
                   metal=0.1, rough=0.25)
-        elif kind == "connector":
-            r = extra
-            body = panel_part(u, v, 22, r, off=1, sections=28)
-            A.add(name, "EXTERNAL INITIATE receptacle", body, P.C_ZINC, "Control panel",
+        elif kind == "terminal":
+            posts = []
+            for tx in panel.TERM_X:
+                posts.append(panel_part(tx, v, 5, 13.5, off=1, sections=24))     # insulating base
+                posts.append(panel_part(tx, v, 17, 7.0, off=5, sections=6))      # knurled nut
+                posts.append(panel_part(tx, v, 9, 4.0, off=20, sections=16))     # post
+            lab, desc = {t[0]: (t[2], t[4]) for t in panel.TERMINALS}[name]
+            A.add(name, lab + " terminals", union(posts), tuple(extra) + (255,), "Control panel",
                   stage=2, direction=tuple(PANEL_N), distance=700,
-                  note="Remote initiation of the test set. [DOC]")
+                  note=f"Binding-post pair, {desc}. [DOC]", metal=0.55, rough=0.4)
 
     keys = []
     for i, _k in enumerate(panel.KEYS):
@@ -460,30 +464,33 @@ def build():
               metal=0.2, rough=0.7)
 
     # ── 9. control electronics ───────────────────────────────────────────────
+    # Sits clear behind the tilted panel's sub-chassis and clear of the fans;
+    # check_clearance() in build.py enforces that.
+    ECX, ECY, ECZ = 330.0, 440.0, zt - 168.0
     A.add("control_chassis", "Control electronics chassis",
-          union([shell(P.ELEC_W, P.ELEC_D, P.ELEC_H, 1.6, (330, 240, zt - 150), faces="newtb"),
-                 box(P.ELEC_W - 60, 1.6, P.ELEC_H - 40, center=(330, 240 - P.ELEC_D / 2 - 6, zt - 150))]),
+          union([shell(P.ELEC_W, 240, P.ELEC_H, 1.6, (ECX, ECY, ECZ), faces="newtb"),
+                 box(P.ELEC_W - 60, 1.6, P.ELEC_H - 40, center=(ECX, ECY + 124, ECZ))]),
           P.C_CABINET_DK, "Control", stage=3, direction=(-0.35, 0, 1), distance=560,
           note="Houses the DDA-1 DSP control and instrumentation boards. [DOC]")
 
     A.add("dda1_board", "DDA-1 processor board",
-          union([box(P.ELEC_W - 80, P.ELEC_D - 90, 6, center=(330, 240, zt - 150)),
-                 box(52, 52, 12, center=(300, 230, zt - 141)),
-                 box(34, 34, 10, center=(380, 258, zt - 142)),
-                 box(120, 20, 14, center=(330, 240 - P.ELEC_D / 2 + 40, zt - 140))]),
+          union([box(P.ELEC_W - 80, 150, 6, center=(ECX, ECY, ECZ)),
+                 box(52, 52, 12, center=(ECX - 30, ECY - 10, ECZ + 9)),
+                 box(34, 34, 10, center=(ECX + 50, ECY + 18, ECZ + 8)),
+                 box(120, 20, 14, center=(ECX, ECY - 58, ECZ + 10))]),
           P.C_PCB, "Control", stage=4, direction=(0, 0, 1), distance=620,
           note="Digital signal processing: full digital SCR control and digital sampling of "
                "the output current. [DOC]", metal=0.1, rough=0.7)
 
     A.add("psu", "Control power supply",
-          shell(190, 160, 90, 1.4, (640, 230, zt - 170), faces="newtb"),
+          shell(190, 160, 90, 1.4, (640, 450, zt - 300), faces="newtb"),
           (58, 62, 70, 255), "Control", stage=3, direction=(0.3, 0, 1), distance=380,
           note="Low-voltage supply for the control system. [INF]")
 
     # cable runs
     looms = []
-    looms.append(rod((330, 240 - P.ELEC_D / 2, zt - 190), (PANEL_CX - 100, 190, PANEL_CZ + 120), 18, 14))
-    looms.append(rod((sx0, sy0 - P.HS_D / 2 - 56, sz0 + 30), (640, 230, zt - 210), 15, 14))
+    looms.append(rod((ECX, ECY - 125, ECZ - 40), (PANEL_CX - 120, 240, PANEL_CZ + 90), 18, 14))
+    looms.append(rod((sx0, sy0 - P.HS_D / 2 - 56, sz0 + 30), (640, 450, zt - 340), 15, 14))
     looms.append(rod((1180, 560, z0 + P.PLINTH_H + 290), (cx + sw_o / 2, cy, cz - 60), 22, 14))
     looms.append(rod((cx - sw_o / 2, cy, cz - 60), (480, 470, z0 + P.PLINTH_H + 40), 22, 14))
     A.add("wiring", "Control and power wiring", union(looms), (38, 40, 46, 255), "Control",

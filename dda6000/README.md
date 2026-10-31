@@ -31,7 +31,8 @@ DDA-3000 / DDA-6000 (Part No. 17177 Rev. 5):
 | Output control | multi-position OUTPUT SELECTOR (coarse) + VERNIER CONTROL (fine); variable pulse time and firing angle |
 | Buttons | START (energises output), STOP (de-energises) |
 | Lamps | OUTPUT ENERGIZED, THERMAL WARNING, THERMAL SHUTDOWN, GROUND INTERLOCK, OVER RANGE |
-| Other | input circuit breaker ON/OFF, external (remote) initiate circuit, stab adapter board with CBS-1 / CBS-2 stab sets, 15 ft 4/0 input leads (p/n 17163), 10 ft 4/0 interconnect leads (p/n 17164) |
+| Panel terminals | START terminals (external initiate switch), TIMER STOP terminals (yellow), VOLTS terminals (digital voltmeter) |
+| Other | input circuit breaker ON/OFF, stab adapter board with CBS-1 / CBS-2 stab sets, 15 ft 4/0 input leads (p/n 17163), 10 ft 4/0 interconnect leads (p/n 17164) |
 
 Every one of those controls exists on the modelled panel, with its real legend.
 
@@ -48,10 +49,14 @@ measurements:
 Parts carry their own provenance: `note` ends with `[DOC]` or `[INF]`, and the viewer
 tags each part **Documented** or **Inferred**.
 
+**The clearance check.** `build.py` also verifies that nothing pokes through the front
+skin or through the tilted control panel wherever it overlaps the aperture. It caught
+the electronics chassis protruding through the ammeter.
+
 **The mass check.** The one hard constraint on hidden volumes is the published 545 kg.
 `build.py` assigns each part a material and a fill factor (a drawn solid standing in for
 channel, tube or wound section), sums the mass and prints it against the published
-figure. The model currently lands at **566 kg, +4%**, with the transformer at 284 kg of
+figure. The model currently lands at **564 kg, +4%**, with the transformer at 284 kg of
 that. This is a sanity check on the reconstruction, not a claim of accuracy.
 
 ## Layout
@@ -61,7 +66,7 @@ that. This is a sanity check on the reconstruction, not a claim of accuracy.
 | `dda6000/params.py` | every dimension, each tagged `[DOC]` or `[INF]` |
 | `dda6000/prims.py` | geometry primitives, `Part` / `Assembly` |
 | `dda6000/panel.py` | control-panel layout table + silkscreen artwork (drives both the texture and the 3-D hardware) |
-| `dda6000/model.py` | the 71-part assembly |
+| `dda6000/model.py` | the 73-part assembly |
 | `dda6000/massref.py` | material and fill factor per part |
 | `build.py` | GLB / STL / OBJ export + mass report |
 | `export_web.py` | compact payload for the viewer |
@@ -88,7 +93,7 @@ and provenance; toggle assemblies; X-ray the skins; overlay the published dimens
 
 ## Using the model elsewhere
 
-`out/dda6000.glb` keeps all 71 parts as separately named nodes, so Blender, Houdini,
+`out/dda6000.glb` keeps all 73 parts as separately named nodes, so Blender, Houdini,
 three.js or any glTF viewer can explode it using the vectors in `out/parts.json`.
 `dda6000.stl` and `dda6000.obj` are single merged bodies for printing or import into CAD.
 Units: millimetres in the source model and the STL/OBJ; metres in the GLB and the web

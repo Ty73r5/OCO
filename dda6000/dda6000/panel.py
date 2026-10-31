@@ -26,14 +26,16 @@ PX = 2.4                                                       # texture pixels 
 
 HEADER_H = 60.0
 GROUPS = {
-    "instr":  (26.0, 22.0, 470.0, PH - HEADER_H - 14.0),
-    "dda1":   (486.0, 22.0, 742.0, PH - HEADER_H - 14.0),
-    "output": (758.0, 22.0, 1135.0, PH - HEADER_H - 14.0),
+    "instr":  (26.0, 22.0, 452.0, PH - HEADER_H - 14.0),
+    "dda1":   (468.0, 22.0, 700.0, PH - HEADER_H - 14.0),
+    "output": (716.0, 22.0, 1006.0, PH - HEADER_H - 14.0),
+    "term":   (1022.0, 22.0, 1135.0, PH - HEADER_H - 14.0),
 }
 GROUP_TITLE = {
     "instr": "INSTRUMENTATION",
     "dda1": "DDA-1 DIGITAL CONTROL",
     "output": "OUTPUT CONTROL",
+    "term": "TERMINALS",
 }
 
 # ── elements: (kind, name, x, y, size..., legend) in panel mm ─────────────────
@@ -45,37 +47,44 @@ METERS = [
 # [DOC] ammeter ranges 200 / 2 000 / 20 000 / 200 000 A, 200 kA default
 RANGE_POSITIONS = ["200", "2 000", "20 000", "200 000"]
 ROTARIES = [
-    ("sel_range", 356.0, 282.0, 38.0, "AMMETER RANGE", RANGE_POSITIONS, 3),
+    ("sel_range", 348.0, 282.0, 36.0, "AMMETER RANGE", RANGE_POSITIONS, 3),
     # [DOC] multi-position OUTPUT SELECTOR, coarse output adjustment
-    ("sel_output", 850.0, 202.0, 56.0, "OUTPUT SELECTOR",
+    ("sel_output", 790.0, 202.0, 50.0, "OUTPUT SELECTOR",
      ["1", "2", "3", "4", "5", "6", "7", "8"], 0),
     # [DOC] VERNIER CONTROL, fine adjustment
-    ("knob_vernier", 1010.0, 202.0, 36.0, "VERNIER CONTROL", None, 0),
+    ("knob_vernier", 930.0, 202.0, 32.0, "VERNIER CONTROL", None, 0),
 ]
 TOGGLES = [
     # [DOC] ammeter MEM / CONT mode
-    ("sw_mode", 356.0, 142.0, "AMMETER MODE", ["MEM", "CONT"]),
+    ("sw_mode", 348.0, 142.0, "AMMETER MODE", ["MEM", "CONT"]),
     # [DOC] input circuit breaker ON / OFF
-    ("sw_breaker", 1056.0, 92.0, "CIRCUIT BREAKER", ["ON", "OFF"]),
+    ("sw_breaker", 952.0, 96.0, "CIRCUIT BREAKER", ["ON", "OFF"]),
 ]
 BUTTONS = [
     # [DOC] START energises the output, STOP de-energises it
-    ("btn_start", 850.0, 84.0, 30.0, "START", (60, 170, 96)),
-    ("btn_stop", 932.0, 84.0, 30.0, "STOP", (196, 54, 46)),
+    ("btn_start", 782.0, 84.0, 28.0, "START", (60, 170, 96)),
+    ("btn_stop", 856.0, 84.0, 28.0, "STOP", (196, 54, 46)),
 ]
 # [DOC] panel lamps for operator safety
 LAMPS = [
-    ("lamp_energized", 790.0, 334.0, "OUTPUT\nENERGIZED", P.C_LAMP_RED),
-    ("lamp_thermwarn", 868.0, 334.0, "THERMAL\nWARNING", P.C_LAMP_AMB),
-    ("lamp_thermshut", 946.0, 334.0, "THERMAL\nSHUTDOWN", P.C_LAMP_AMB),
-    ("lamp_ground", 1024.0, 334.0, "GROUND\nINTERLOCK", P.C_LAMP_WHT),
-    ("lamp_overrange", 1102.0, 334.0, "OVER\nRANGE", P.C_LAMP_RED),
+    ("lamp_energized", 745.0, 334.0, "OUTPUT\nENERGIZED", P.C_LAMP_RED),
+    ("lamp_thermwarn", 803.0, 334.0, "THERMAL\nWARNING", P.C_LAMP_AMB),
+    ("lamp_thermshut", 861.0, 334.0, "THERMAL\nSHUTDOWN", P.C_LAMP_AMB),
+    ("lamp_ground", 919.0, 334.0, "GROUND\nINTERLOCK", P.C_LAMP_WHT),
+    ("lamp_overrange", 977.0, 334.0, "OVER\nRANGE", P.C_LAMP_RED),
 ]
-LCD = ("lcd", 614.0, 252.0, 196.0, 118.0)           # x, y centre, w, h
-KEYPAD = ("keypad", 614.0, 122.0, 196.0, 74.0)
+LCD = ("lcd", 584.0, 252.0, 186.0, 118.0)           # x, y centre, w, h
+KEYPAD = ("keypad", 584.0, 122.0, 186.0, 74.0)
 KEYS = ["MENU", "UP", "ENTER", "ESC", "DOWN", "SEL"]
-# [DOC] external initiate circuit for remote triggering
-CONNECTORS = [("conn_initiate", 1100.0, 212.0, 18.0, "EXTERNAL\nINITIATE")]
+# [DOC] the manual names START terminals (external switch), yellow TIMER STOP
+# terminals and VOLTS terminals for the digital voltmeter.
+CONNECTORS = []
+TERM_X = (1050.0, 1108.0)
+TERMINALS = [
+    ("term_start", 318.0, "START", (196, 200, 208), "external initiate switch"),
+    ("term_timer", 214.0, "TIMER STOP", (226, 178, 36), "timer stop input"),
+    ("term_volts", 110.0, "VOLTS", (196, 200, 208), "digital voltmeter input"),
+]
 
 
 @functools.lru_cache(None)
@@ -208,11 +217,14 @@ def texture():
         d.rounded_rectangle([a[0], a[1], b[0], b[1]], radius=3 * PX, fill=(52, 56, 64), outline=(96, 102, 112), width=max(1, int(0.8 * PX)))
         _text(d, _px(cx, cy), k, 10, (216, 222, 232), "mm")
 
-    # ── connectors ───────────────────────────────────────────────────────────
-    for name, x, y, r, lab in CONNECTORS:
-        c = _px(x, y)
-        d.ellipse([c[0] - r * PX, c[1] - r * PX, c[0] + r * PX, c[1] + r * PX], fill=(34, 37, 43), outline=(104, 110, 120), width=max(2, int(PX)))
-        _text(d, _px(x, y - r - 9), lab, 9.5, (196, 202, 212), "ma")
+    # ── binding-post terminals [DOC] ─────────────────────────────────────────
+    for name, y, lab, col, _desc in TERMINALS:
+        _text(d, _px((TERM_X[0] + TERM_X[1]) / 2, y + 22), lab, 11, (206, 212, 222), "mm", "SemiBold")
+        for tx in TERM_X:
+            c = _px(tx, y)
+            d.ellipse([c[0] - 13 * PX, c[1] - 13 * PX, c[0] + 13 * PX, c[1] + 13 * PX],
+                      fill=(30, 33, 38), outline=(104, 110, 120), width=max(2, int(PX)))
+            d.ellipse([c[0] - 8 * PX, c[1] - 8 * PX, c[0] + 8 * PX, c[1] + 8 * PX], fill=col)
 
     # ── footer warning strip ─────────────────────────────────────────────────
     _text(d, _px(34, 10), "DANGER — HIGH CURRENT.  GROUND INTERLOCK MUST BE CLOSED BEFORE ENERGIZING.",
@@ -235,6 +247,6 @@ def elements():
     for name, x, y, lab, col in LAMPS:
         out.append(("lamp", name, x, y, col))
     out.append(("lcd", LCD[0], LCD[1], LCD[2], (LCD[3], LCD[4])))
-    for name, x, y, r, lab in CONNECTORS:
-        out.append(("connector", name, x, y, r))
+    for name, y, lab, col, _desc in TERMINALS:
+        out.append(("terminal", name, (TERM_X[0] + TERM_X[1]) / 2, y, col))
     return out

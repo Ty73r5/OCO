@@ -67,6 +67,38 @@ def metadata(parts, unit_scale=0.001):
     return out, total, acc
 
 
+def check_clearance(parts):
+    """Flag parts that poke through the front skin or through the control panel.
+
+    The panel is a tilted plane; anything that is not panel hardware must stay
+    behind it wherever it overlaps the aperture. This caught the electronics
+    chassis protruding through the ammeter.
+    """
+    import math
+    from dda6000.model import PANEL_N, panel_pt
+    origin = panel_pt(0.0, 0.0, 0.0)
+    n = np.asarray(PANEL_N, float)
+    ap = (P.PANEL_X0, P.PANEL_X1, P.PANEL_Z0, P.PANEL_Z1)
+    # stamped louvers are meant to stand slightly proud of the skin
+    PROUD_OK = {"louver_bank": 6.0}
+    problems = []
+    for p in parts:
+        v = np.asarray(p.mesh.vertices, float)
+        if p.group not in ("Control panel", "Accessories", "Output", "Running gear"):
+            if v[:, 1].min() < -PROUD_OK.get(p.name, 1.0):
+                problems.append(f"{p.name}: {-v[:, 1].min():.0f} mm proud of the front skin")
+        if p.group in ("Control panel", "Accessories"):
+            continue
+        inside = ((v[:, 0] > ap[0]) & (v[:, 0] < ap[1]) &
+                  (v[:, 2] > ap[2]) & (v[:, 2] < ap[3]))
+        if not inside.any():
+            continue
+        d = (v[inside] - origin) @ n
+        if d.max() > 2.0:
+            problems.append(f"{p.name}: {d.max():.0f} mm through the control panel")
+    return problems
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-stl", action="store_true")
@@ -99,6 +131,7 @@ def main():
         merged.export(os.path.join(OUT, "dda6000.obj"))
 
     b = A.bounds()
+    issues = check_clearance(parts)
     print(f"parts            {len(parts)}")
     print(f"triangles        {sum(len(p.mesh.faces) for p in parts):,}")
     print(f"bounds mm        X {b[0][0]:.0f}..{b[1][0]:.0f}  "
@@ -110,6 +143,9 @@ def main():
     heavy = sorted((m for m in meta if m["group"] != "Accessories"), key=lambda m: -m["mass"])[:8]
     for h in heavy:
         print(f"   {h['mass']:7.1f} kg  {h['label']}")
+    print(f"clearance        {'OK' if not issues else str(len(issues)) + ' PROBLEM(S)'}")
+    for s_ in issues:
+        print(f"   ! {s_}")
     print(f"wrote            {glb}  ({os.path.getsize(glb) / 1e6:.1f} MB)")
 
 
