@@ -3,3 +3,6 @@ __pycache__/
 *.part.mp4
 output/*.wav
 output/*.mp4
+dda6000/out/*.stl
+dda6000/out/*.obj
+dda6000/viewer/model.json

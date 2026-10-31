@@ -1,0 +1,561 @@
+<title>DDA-6000 Exploded View</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: fixed instrument sidebar beside a full-bleed viewport; stacks on phones. */
+:root{
+  --bg:#eef0f3; --surface:#ffffff; --surface-2:#f6f7f9; --line:#d2d7de;
+  --ink:#16191e; --ink-2:#565f6c; --ink-3:#8b94a1;
+  --accent:#b4621a; --accent-soft:#f0d9c0; --copper:#b06a3b;
+  --doc:#1d6b4f; --doc-bg:#dcefe5; --inf:#8a6a1e; --inf-bg:#f6ebcf;
+  --stage:#3d6ea8; --view:#dfe3e8; --shadow:0 1px 2px rgba(16,20,26,.07),0 6px 18px rgba(16,20,26,.06);
+  --fd:'Barlow Condensed',Arial Narrow,system-ui,sans-serif;
+  --fb:'Barlow',system-ui,-apple-system,sans-serif;
+  --fm:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101318; --surface:#171b21; --surface-2:#1d222a; --line:#2b323c;
+  --ink:#e7ebf1; --ink-2:#a2abb8; --ink-3:#6f7987;
+  --accent:#e2922f; --accent-soft:#3a2c17; --copper:#c47c46;
+  --doc:#6fcfa0; --doc-bg:#17352a; --inf:#dcb45c; --inf-bg:#352c13;
+  --stage:#7aa8dd; --view:#0b0e12; --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 24px rgba(0,0,0,.35);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101318; --surface:#171b21; --surface-2:#1d222a; --line:#2b323c;
+  --ink:#e7ebf1; --ink-2:#a2abb8; --ink-3:#6f7987;
+  --accent:#e2922f; --accent-soft:#3a2c17; --copper:#c47c46;
+  --doc:#6fcfa0; --doc-bg:#17352a; --inf:#dcb45c; --inf-bg:#352c13;
+  --stage:#7aa8dd; --view:#0b0e12; --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 24px rgba(0,0,0,.35);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:14px;
+  -webkit-font-smoothing:antialiased;overflow:hidden}
+h1,h2,h3{margin:0;font-family:var(--fd);font-weight:600;text-wrap:balance}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+.app{display:grid;grid-template-columns:336px 1fr;height:100%;
+  padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+
+/* ── sidebar ─────────────────────────────────────────────── */
+.side{background:var(--surface);border-right:1px solid var(--line);display:flex;flex-direction:column;
+  min-width:0;overflow:hidden}
+.head{padding:16px 18px 14px;border-bottom:1px solid var(--line)}
+.brand{font-family:var(--fd);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.head h1{font-size:27px;line-height:1.05;letter-spacing:.01em;margin-top:3px}
+.head p{margin:2px 0 0;font-size:12.5px;color:var(--ink-2)}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.spec{background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:7px 9px;min-width:0}
+.spec b{display:block;font-family:var(--fm);font-size:12px;font-weight:500;letter-spacing:-.04em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.spec span{display:block;font-family:var(--fd);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-3);margin-top:1px}
+
+.scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;min-height:0}
+.sec{padding:14px 18px;border-bottom:1px solid var(--line)}
+.sec>h2{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  font-family:var(--fd);font-weight:600;margin-bottom:10px}
+
+/* explode control */
+.exp-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.exp-val{font-family:var(--fm);font-size:22px;font-weight:500;letter-spacing:-.03em}
+.exp-stage{font-family:var(--fd);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--stage)}
+input[type=range]{width:100%;margin:11px 0 0;accent-color:var(--accent);height:22px}
+.ticks{display:flex;justify-content:space-between;font-family:var(--fd);font-size:9.5px;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-top:-1px}
+.ticks span{flex:1;text-align:center;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ticks span:first-child{text-align:left}.ticks span:last-child{text-align:right}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+.btn{border:1px solid var(--line);background:var(--surface-2);border-radius:5px;padding:6px 10px;
+  font-family:var(--fd);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
+.btn:hover{border-color:var(--accent);color:var(--ink)}
+.btn[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn[aria-pressed=true],
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn[aria-pressed=true]{color:#17110a}}
+.btn.wide{flex:1;text-align:center}
+
+/* groups + parts */
+.grp{border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:7px;background:var(--surface-2)}
+.grp-h{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;text-align:left}
+.grp-h:hover{background:var(--bg)}
+.dot{width:9px;height:9px;border-radius:2px;flex:none}
+.grp-h b{font-family:var(--fd);font-size:13.5px;font-weight:600;letter-spacing:.03em;flex:1;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cnt{font-family:var(--fm);font-size:11px;color:var(--ink-3)}
+.eye{width:26px;height:22px;border-radius:4px;display:grid;place-items:center;color:var(--ink-3);flex:none}
+.eye:hover{background:var(--line);color:var(--ink)}
+.eye[aria-pressed=false]{color:var(--accent)}
+.parts{display:none;border-top:1px solid var(--line)}
+.grp.open .parts{display:block}
+.part{display:flex;align-items:center;gap:8px;width:100%;padding:5px 10px 5px 12px;text-align:left;
+  font-size:12.5px;color:var(--ink-2);border-left:2px solid transparent}
+.part:hover{background:var(--bg);color:var(--ink)}
+.part[aria-current=true]{background:var(--accent-soft);color:var(--ink);border-left-color:var(--accent)}
+.part span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.part em{font-family:var(--fm);font-size:10.5px;font-style:normal;color:var(--ink-3)}
+
+/* selected part card */
+.card{background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:12px 13px}
+.card h3{font-size:17px;line-height:1.2}
+.meta{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 9px}
+.tag{font-family:var(--fd);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 7px;border-radius:3px;background:var(--line);color:var(--ink-2)}
+.tag.doc{background:var(--doc-bg);color:var(--doc)}
+.tag.inf{background:var(--inf-bg);color:var(--inf)}
+.card p{margin:0;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:9px 0 0;font-size:12px}
+.card dt{color:var(--ink-3);font-family:var(--fd);letter-spacing:.06em;text-transform:uppercase;font-size:10.5px;
+  align-self:center}
+.card dd{margin:0;font-family:var(--fm);font-size:12px}
+.hint{font-size:12.5px;color:var(--ink-3);line-height:1.5}
+
+/* ── viewport ────────────────────────────────────────────── */
+.view{position:relative;background:var(--view);min-width:0;overflow:hidden}
+canvas{display:block;width:100%;height:100%;touch-action:none}
+.legend{position:absolute;left:16px;bottom:14px;display:flex;flex-wrap:wrap;gap:6px;
+  pointer-events:none;max-width:calc(100% - 32px)}
+.legend i{font-style:normal;font-family:var(--fd);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  background:color-mix(in srgb,var(--surface) 86%,transparent);border:1px solid var(--line);
+  color:var(--ink-2);padding:3px 8px;border-radius:3px}
+.hud{position:absolute;right:16px;top:14px;display:flex;gap:6px}
+.dim{position:absolute;pointer-events:none;font-family:var(--fm);font-size:11px;color:var(--accent);
+  background:color-mix(in srgb,var(--view) 70%,transparent);padding:1px 5px;border-radius:3px;
+  transform:translate(-50%,-50%);white-space:nowrap}
+.tip{position:absolute;pointer-events:none;font-family:var(--fd);font-size:12px;letter-spacing:.04em;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:3px 8px;border-radius:4px;
+  box-shadow:var(--shadow);transform:translate(10px,-50%);white-space:nowrap;opacity:0;transition:opacity .1s}
+.loading{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--fd);
+  letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:var(--ink-3);background:var(--view)}
+.loading.err{color:var(--accent);padding:24px;text-align:center;line-height:1.6;letter-spacing:.02em;
+  text-transform:none;font-size:13px}
+
+@media (max-width:860px){
+  body{overflow:auto}
+  .app{grid-template-columns:1fr;height:auto}
+  .side{border-right:none;border-bottom:1px solid var(--line);order:2;overflow:visible}
+  .scroll{overflow:visible}
+  .view{order:1;height:58svh;min-height:300px;position:sticky;top:0;z-index:2}
+  .legend{display:none}
+  .hud{right:12px;top:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="app">
+  <aside class="side">
+    <div class="head">
+      <div class="brand">Megger</div>
+      <h1>DDA-6000</h1>
+      <p>Universal Circuit Breaker Test Set</p>
+      <div class="specs">
+        <div class="spec"><b>55 × 28 × 46 in</b><span>W × D × H</span></div>
+        <div class="spec"><b>1397×711×1168</b><span>millimetres</span></div>
+        <div class="spec"><b>1200 lb · 545 kg</b><span>Published mass</span></div>
+        <div class="spec"><b>60 000 A</b><span>Max output</span></div>
+      </div>
+    </div>
+
+    <div class="scroll">
+      <div class="sec">
+        <h2>Exploded view</h2>
+        <div class="exp-top">
+          <div class="exp-val"><span id="expPct">0</span>%</div>
+          <div class="exp-stage" id="expStage">Assembled</div>
+        </div>
+        <input type="range" id="explode" min="0" max="100" value="0" step="0.5" aria-label="Explode amount">
+        <div class="ticks"><span>Assembled</span><span>Skins</span><span>Panel</span><span>Subassy</span><span>Core</span></div>
+        <div class="row">
+          <button class="btn wide" id="play">Play</button>
+          <button class="btn" id="reset">Reset view</button>
+        </div>
+      </div>
+
+      <div class="sec">
+        <h2>Camera</h2>
+        <div class="row" id="views">
+          <button class="btn" data-view="iso">Iso</button>
+          <button class="btn" data-view="front">Front</button>
+          <button class="btn" data-view="side">Side</button>
+          <button class="btn" data-view="top">Top</button>
+          <button class="btn" data-view="rear">Rear</button>
+        </div>
+        <div class="row">
+          <button class="btn wide" id="dims" aria-pressed="false">Dimensions</button>
+          <button class="btn wide" id="ghost" aria-pressed="false">X-ray skins</button>
+        </div>
+      </div>
+
+      <div class="sec">
+        <h2>Assemblies</h2>
+        <div id="groups"></div>
+      </div>
+
+      <div class="sec">
+        <h2>Selection</h2>
+        <div id="info"><p class="hint">Click any component in the model, or pick one from the list above.</p></div>
+      </div>
+
+      <div class="sec">
+        <h2>How this model was made</h2>
+        <p class="hint" style="margin-bottom:9px">Megger publishes the envelope, mass, enclosure features and
+        the full control list for this set, and those are modelled to the figures. No drawing or photograph of
+        the internals was reachable, so the layout inside the cabinet is an engineering reconstruction.</p>
+        <div class="meta">
+          <span class="tag doc">Doc</span><span class="tag inf">Inferred</span>
+        </div>
+        <dl class="card" style="border:none;background:none;padding:0;margin:0" id="massCard"></dl>
+      </div>
+    </div>
+  </aside>
+
+  <main class="view" id="view">
+    <canvas id="cv"></canvas>
+    <div class="hud"><button class="btn" id="iso2">Fit</button></div>
+    <div class="legend" id="legend"></div>
+    <div class="tip" id="tip"></div>
+    <div class="loading" id="load">Loading model…</div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+<script>
+(function(){
+'use strict';
+var loadEl = document.getElementById('load');
+function fail(msg){ loadEl.className='loading err'; loadEl.textContent=msg; }
+if(!window.THREE){ fail('The 3-D library could not be loaded. Check the network connection and reload.'); return; }
+
+var GROUP_COLOR = {
+  'Enclosure':'#8d96a3','Structure':'#6b7686','Running gear':'#5d6675','Control panel':'#d8a13c',
+  'Power train':'#c0703c','Output':'#b4521f','Cooling':'#5e8fb5','Control':'#4f9a7a','Accessories':'#8a7bb0'
+};
+var STAGE_NAME = ['Assembled','Skins off','Panel apart','Subassemblies out','Core stripped'];
+
+var scene,camera,renderer,root,ground,raycast,pointer,meshes=[],byName={},PAY=null;
+var orbit={target:new THREE.Vector3(),r:4.2,theta:0.72,phi:1.15,dragging:0,px:0,py:0};
+var explode=0,selected=null,hovered=null,showDims=false,ghost=false,playing=false,playT=0;
+var dimEls=[],tip=document.getElementById('tip');
+
+function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+function dark(){ var t=document.documentElement.getAttribute('data-theme');
+  if(t) return t==='dark';
+  return matchMedia('(prefers-color-scheme: dark)').matches; }
+
+function b64f32(s){ var b=atob(s),n=b.length,u=new Uint8Array(n); for(var i=0;i<n;i++)u[i]=b.charCodeAt(i);
+  return new Float32Array(u.buffer); }
+function b64u16(s){ var b=atob(s),n=b.length,u=new Uint8Array(n); for(var i=0;i<n;i++)u[i]=b.charCodeAt(i);
+  return new Uint16Array(u.buffer); }
+
+function init(pay){
+  PAY=pay;
+  var view=document.getElementById('view'), cv=document.getElementById('cv');
+  renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=0.92;
+
+  scene=new THREE.Scene();
+  camera=new THREE.PerspectiveCamera(34,1,0.05,60);
+  root=new THREE.Group(); scene.add(root);
+
+  scene.environment=buildEnv();
+  var hemi=new THREE.HemisphereLight(0xffffff,0x404650,0.0); scene.add(hemi);
+  var key=new THREE.DirectionalLight(0xffffff,0); key.position.set(2.6,4.0,3.0);
+  key.castShadow=true; key.shadow.mapSize.set(2048,2048);
+  var c=key.shadow.camera; c.left=-1.9;c.right=1.9;c.top=1.9;c.bottom=-1.9;c.near=0.5;c.far=12;
+  key.shadow.bias=-0.0012; scene.add(key);
+  var fill=new THREE.DirectionalLight(0xffffff,0); fill.position.set(-3.2,1.8,-2.2); scene.add(fill);
+  var rim=new THREE.DirectionalLight(0xffffff,0); rim.position.set(0.4,1.2,-3.4); scene.add(rim);
+  scene.lights={hemi:hemi,key:key,fill:fill,rim:rim};
+
+  ground=new THREE.Mesh(new THREE.PlaneGeometry(14,14),
+    new THREE.ShadowMaterial({opacity:0.22}));
+  ground.rotation.x=-Math.PI/2; ground.position.y=-0.002; ground.receiveShadow=true; scene.add(ground);
+
+  var tex=null;
+  if(pay.texture){ tex=new THREE.TextureLoader().load(pay.texture);
+    tex.colorSpace=THREE.SRGBColorSpace; tex.anisotropy=8; tex.flipY=false; }
+
+  var box=new THREE.Box3();
+  pay.parts.forEach(function(p){
+    var g=new THREE.BufferGeometry();
+    g.setAttribute('position',new THREE.BufferAttribute(b64f32(p.pos),3));
+    if(p.uv) g.setAttribute('uv',new THREE.BufferAttribute(b64f32(p.uv),2));
+    g.setIndex(new THREE.BufferAttribute(b64u16(p.idx),1));
+    g.computeVertexNormals(); g.computeBoundingSphere();
+    var m=new THREE.MeshStandardMaterial({
+      color:new THREE.Color(p.color[0],p.color[1],p.color[2]),
+      metalness:p.metal, roughness:p.rough, flatShading:true,
+      transparent:p.opacity<1, opacity:p.opacity, side:THREE.DoubleSide
+    });
+    if(p.tex && tex){ m.map=tex; m.color.setRGB(1,1,1); m.flatShading=false; }
+    var mesh=new THREE.Mesh(g,m);
+    mesh.castShadow=true; mesh.receiveShadow=true;
+    mesh.userData=p;
+    mesh.userData.base=new THREE.Vector3(0,0,0);
+    mesh.userData.baseOpacity=p.opacity;
+    root.add(mesh); meshes.push(mesh); byName[p.name]=mesh;
+    g.computeBoundingBox(); box.union(g.boundingBox);
+  });
+
+  // frame on the cabinet itself; the stab board is an accessory that hangs off the front
+  var cab=new THREE.Box3();
+  meshes.forEach(function(m){ if(m.userData.group!=='Accessories'){
+    m.geometry.computeBoundingBox(); cab.union(m.geometry.boundingBox); } });
+  var ctr=cab.getCenter(new THREE.Vector3()), size=cab.getSize(new THREE.Vector3());
+  root.position.set(-ctr.x,-cab.min.y,-ctr.z);
+  scene.centerY=size.y/2;
+  var sph=cab.getBoundingSphere(new THREE.Sphere());
+  scene.fitRadius=sph.radius/Math.sin(camera.fov*Math.PI/360)*1.06;
+  orbit.r=scene.fitRadius; orbit.target.set(0,scene.centerY,0);
+
+  buildUI(pay); applyTheme(); bind(view,cv);
+  window.addEventListener('resize',resize); resize();
+  loadEl.remove(); animate();
+}
+
+/* A small emissive room, pre-filtered into an IBL map. Bare copper, aluminium and
+   plated hardware need something to reflect or they render black. */
+function buildEnv(){
+  var s=new THREE.Scene();
+  function panel(w,h,d,x,y,z,rx,ry,col,i){
+    var m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),
+      new THREE.MeshBasicMaterial({color:new THREE.Color(col).multiplyScalar(i),side:THREE.DoubleSide}));
+    m.position.set(x,y,z); m.rotation.set(rx,ry,0); s.add(m);
+  }
+  var room=new THREE.Mesh(new THREE.BoxGeometry(14,9,14),
+    new THREE.MeshBasicMaterial({color:0x5a6270,side:THREE.BackSide}));
+  room.position.y=3.0; s.add(room);
+  panel(9,9,0,0,8.4,0,Math.PI/2,0,0xffffff,1.7);        // ceiling bounce
+  panel(7,4,0,-6.2,3.4,0,0,Math.PI/2,0xdfe6f2,1.5);     // cool side light
+  panel(7,4,0,6.2,3.0,0,0,-Math.PI/2,0xffe8cc,1.0);     // warm side light
+  panel(10,5,0,0,2.6,-6.2,0,0,0x32383f,0.5);
+  var pm=new THREE.PMREMGenerator(renderer); pm.compileEquirectangularShader();
+  var env=pm.fromScene(s,0.04).texture; pm.dispose();
+  return env;
+}
+
+function applyTheme(){
+  var d=dark();
+  renderer.setClearColor(new THREE.Color(css('--view')||(d?'#0b0e12':'#dfe3e8')),1);
+  var ei = d?0.60:0.85;
+  meshes.forEach(function(m){ m.material.envMapIntensity=ei; m.material.needsUpdate=false; });
+  scene.lights.hemi.intensity = d?0.22:0.40;
+  scene.lights.key.intensity  = d?1.35:1.45;
+  scene.lights.fill.intensity = d?0.28:0.38;
+  scene.lights.rim.intensity  = d?0.45:0.20;
+  ground.material.opacity = d?0.34:0.2;
+}
+
+/* ── explode ─────────────────────────────────────────────── */
+function easeInOut(x){ return x<0.5 ? 2*x*x : 1-Math.pow(-2*x+2,2)/2; }
+function applyExplode(){
+  var N=PAY.maxStage;
+  var stageIdx=Math.min(Math.ceil(explode*N),N);
+  document.getElementById('expPct').textContent=Math.round(explode*100);
+  document.getElementById('expStage').textContent=STAGE_NAME[explode<=0.001?0:stageIdx];
+  meshes.forEach(function(m){
+    var p=m.userData, local=Math.min(Math.max(explode*N-(p.stage-1),0),1);
+    var k=easeInOut(local)*p.dist;
+    m.position.set(p.dir[0]*k,p.dir[1]*k,p.dir[2]*k);
+  });
+}
+
+/* ── UI ──────────────────────────────────────────────────── */
+function buildUI(pay){
+  var groups={}, order=[];
+  pay.parts.forEach(function(p){ if(!groups[p.group]){groups[p.group]=[];order.push(p.group);} groups[p.group].push(p); });
+
+  var host=document.getElementById('groups');
+  order.forEach(function(gname){
+    var wrap=document.createElement('div'); wrap.className='grp';
+    var head=document.createElement('button'); head.className='grp-h'; head.type='button';
+    head.innerHTML='<i class="dot" style="background:'+(GROUP_COLOR[gname]||'#888')+'"></i>'+
+      '<b></b><span class="cnt">'+groups[gname].length+'</span>';
+    head.querySelector('b').textContent=gname;
+    var eye=document.createElement('button'); eye.className='eye'; eye.type='button';
+    eye.setAttribute('aria-pressed','true'); eye.setAttribute('aria-label','Hide '+gname);
+    eye.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
+    head.appendChild(eye);
+    var list=document.createElement('div'); list.className='parts';
+    groups[gname].forEach(function(p){
+      var b=document.createElement('button'); b.className='part'; b.type='button'; b.dataset.name=p.name;
+      var s=document.createElement('span'); s.textContent=p.label;
+      var e=document.createElement('em'); e.textContent=p.mass>=1?p.mass.toFixed(0)+' kg':(p.mass*1000).toFixed(0)+' g';
+      b.appendChild(s); b.appendChild(e);
+      b.onclick=function(){ select(p.name,true); };
+      list.appendChild(b);
+    });
+    head.onclick=function(ev){ if(ev.target.closest('.eye'))return; wrap.classList.toggle('open'); };
+    if(gname==='Accessories'){ eye.setAttribute('aria-pressed','false');
+      groups[gname].forEach(function(p){ byName[p.name].visible=false; }); }
+    eye.onclick=function(ev){ ev.stopPropagation();
+      var on=eye.getAttribute('aria-pressed')==='true'; eye.setAttribute('aria-pressed',String(!on));
+      groups[gname].forEach(function(p){ byName[p.name].visible=!on; }); };
+    wrap.appendChild(head); wrap.appendChild(list); host.appendChild(wrap);
+  });
+
+  var leg=document.getElementById('legend');
+  order.forEach(function(g){ var i=document.createElement('i');
+    i.innerHTML='<span style="display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:5px;background:'+
+      (GROUP_COLOR[g]||'#888')+'"></span>'+g; leg.appendChild(i); });
+
+  document.getElementById('massCard').innerHTML=
+    '<dt>Published</dt><dd>'+pay.documented_mass_kg+' kg</dd>'+
+    '<dt>Modelled</dt><dd>'+pay.modelled_mass_kg+' kg ('+
+      (pay.modelled_mass_kg>pay.documented_mass_kg?'+':'')+
+      Math.round(100*pay.modelled_mass_kg/pay.documented_mass_kg-100)+'%)</dd>'+
+    '<dt>Parts</dt><dd>'+pay.parts.length+'</dd>';
+
+  var sl=document.getElementById('explode');
+  sl.oninput=function(){ explode=+sl.value/100; stopPlay(); applyExplode(); };
+  document.getElementById('play').onclick=togglePlay;
+  document.getElementById('reset').onclick=function(){ setView('iso'); explode=0; sl.value=0; stopPlay(); applyExplode(); select(null); };
+  document.getElementById('iso2').onclick=function(){ setView('iso'); };
+  document.querySelectorAll('#views .btn').forEach(function(b){ b.onclick=function(){ setView(b.dataset.view); }; });
+  document.getElementById('dims').onclick=function(){ showDims=!showDims;
+    this.setAttribute('aria-pressed',String(showDims)); updateDims(); };
+  document.getElementById('ghost').onclick=function(){ ghost=!ghost; this.setAttribute('aria-pressed',String(ghost));
+    meshes.forEach(function(m){ var p=m.userData;
+      var soft=(p.group==='Enclosure'||p.group==='Structure');
+      m.material.transparent = ghost&&soft ? true : p.baseOpacity<1;
+      m.material.opacity = ghost&&soft ? 0.16 : p.baseOpacity;
+      m.material.depthWrite = !(ghost&&soft) ; }); };
+}
+
+function togglePlay(){ playing=!playing; document.getElementById('play').textContent=playing?'Pause':'Play';
+  if(playing) playT=explode>=0.999?0:explode; }
+function stopPlay(){ if(playing){ playing=false; document.getElementById('play').textContent='Play'; } }
+
+function select(name,focus){
+  if(selected&&byName[selected]) byName[selected].material.emissive.setHex(0x000000);
+  selected=name;
+  document.querySelectorAll('.part').forEach(function(b){
+    b.setAttribute('aria-current',String(b.dataset.name===name)); });
+  var box=document.getElementById('info');
+  if(!name){ box.innerHTML='<p class="hint">Click any component in the model, or pick one from the list above.</p>'; return; }
+  var m=byName[name], p=m.userData;
+  m.material.emissive.setHex(dark()?0x4a3410:0x6b4a18);
+  var isDoc=/\[DOC/.test(p.note);
+  box.innerHTML='<div class="card"><h3></h3><div class="meta">'+
+    '<span class="tag">'+p.group+'</span>'+
+    '<span class="tag '+(isDoc?'doc':'inf')+'">'+(isDoc?'Documented':'Inferred')+'</span>'+
+    '<span class="tag">Stage '+p.stage+'</span></div>'+
+    '<p></p><dl><dt>Mass</dt><dd>'+(p.mass>=1?p.mass.toFixed(1)+' kg':(p.mass*1000).toFixed(0)+' g')+'</dd>'+
+    '<dt>Material</dt><dd>'+p.material+'</dd><dt>Triangles</dt><dd>'+p.tris.toLocaleString()+'</dd></dl></div>';
+  box.querySelector('h3').textContent=p.label;
+  box.querySelector('p').textContent=p.note.replace(/\s*\[(DOC[^\]]*|INF)\]\s*/g,' ').trim()||'—';
+  if(focus){ var c=new THREE.Vector3(); m.geometry.boundingBox.getCenter(c);
+    c.add(m.position).add(root.position); orbit.target.lerp(c,0.85); }
+}
+
+/* ── camera + input ──────────────────────────────────────── */
+function setView(v){
+  var a={iso:[0.72,1.12],front:[0,1.5708],side:[Math.PI/2,1.5708],rear:[Math.PI,1.5708],top:[0.72,0.16]}[v];
+  if(!a) return;
+  orbit.theta=a[0]; orbit.phi=a[1]; orbit.r=scene.fitRadius*(v==='top'?1.08:1.0);
+  orbit.target.set(0,scene.centerY,0);
+}
+function bind(view,cv){
+  cv.addEventListener('pointerdown',function(e){ cv.setPointerCapture(e.pointerId);
+    orbit.dragging=(e.button===2||e.shiftKey)?2:1; orbit.px=e.clientX; orbit.py=e.clientY; orbit.moved=0; });
+  cv.addEventListener('pointermove',function(e){
+    if(orbit.dragging){ var dx=e.clientX-orbit.px, dy=e.clientY-orbit.py;
+      orbit.px=e.clientX; orbit.py=e.clientY; orbit.moved+=Math.abs(dx)+Math.abs(dy);
+      if(orbit.dragging===1){ orbit.theta-=dx*0.0055; orbit.phi=Math.max(0.06,Math.min(1.62,orbit.phi-dy*0.0055)); }
+      else { var s=orbit.r*0.0013; var right=new THREE.Vector3().setFromMatrixColumn(camera.matrix,0);
+        var up=new THREE.Vector3().setFromMatrixColumn(camera.matrix,1);
+        orbit.target.addScaledVector(right,-dx*s).addScaledVector(up,dy*s); }
+    } else hover(e,cv);
+  });
+  function end(e){ if(orbit.dragging===1&&orbit.moved<5) pick(e,cv); orbit.dragging=0; }
+  cv.addEventListener('pointerup',end); cv.addEventListener('pointercancel',function(){orbit.dragging=0;});
+  cv.addEventListener('contextmenu',function(e){e.preventDefault();});
+  cv.addEventListener('wheel',function(e){ e.preventDefault();
+    orbit.r=Math.max(0.6,Math.min(14,orbit.r*(1+Math.sign(e.deltaY)*0.09))); },{passive:false});
+  var pinch=0;
+  cv.addEventListener('touchmove',function(e){ if(e.touches.length===2){
+    var d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+    if(pinch) orbit.r=Math.max(0.6,Math.min(14,orbit.r*pinch/d)); pinch=d; orbit.dragging=0; } },{passive:true});
+  cv.addEventListener('touchend',function(){ pinch=0; });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyTheme);
+  new MutationObserver(applyTheme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+}
+function ndc(e,cv){ var r=cv.getBoundingClientRect();
+  return new THREE.Vector2(((e.clientX-r.left)/r.width)*2-1, -((e.clientY-r.top)/r.height)*2+1); }
+function castAt(e,cv){
+  raycast=raycast||new THREE.Raycaster();
+  raycast.setFromCamera(ndc(e,cv),camera);
+  var hits=raycast.intersectObjects(meshes.filter(function(m){return m.visible;}),false);
+  return hits.length?hits[0].object:null;
+}
+function pick(e,cv){ var o=castAt(e,cv); select(o?o.userData.name:null,false); }
+function hover(e,cv){
+  var o=castAt(e,cv), cv2=document.getElementById('cv');
+  cv2.style.cursor=o?'pointer':'default';
+  if(o){ tip.textContent=o.userData.label; tip.style.opacity='1';
+    var r=cv.getBoundingClientRect(); tip.style.left=(e.clientX-r.left)+'px'; tip.style.top=(e.clientY-r.top)+'px';
+  } else tip.style.opacity='0';
+}
+
+/* ── dimensions overlay ──────────────────────────────────── */
+function updateDims(){
+  dimEls.forEach(function(d){ d.el.remove(); }); dimEls=[];
+  if(!showDims) return;
+  var e=PAY.envelope_mm, x=e[0]/2000, y=e[2]/1000, z=e[1]/2000;
+  var specs=[
+    {p:new THREE.Vector3(0,-0.02,z),t:e[0].toFixed(0)+' mm  ·  55 in'},
+    {p:new THREE.Vector3(x,y/2,z),t:e[2].toFixed(0)+' mm  ·  46 in'},
+    {p:new THREE.Vector3(x,-0.02,0),t:e[1].toFixed(0)+' mm  ·  28 in'}
+  ];
+  specs.forEach(function(s){ var el=document.createElement('div'); el.className='dim'; el.textContent=s.t;
+    document.getElementById('view').appendChild(el); dimEls.push({el:el,p:s.p}); });
+  if(!scene.getObjectByName('dimbox')){
+    var e2=PAY.envelope_mm;
+    var g=new THREE.BoxGeometry(e2[0]/1000,e2[2]/1000,e2[1]/1000);
+    var box=new THREE.LineSegments(new THREE.EdgesGeometry(g),
+      new THREE.LineBasicMaterial({color:0xd4832c}));
+    box.name='dimbox'; box.position.y=e2[2]/2000; scene.add(box);
+  }
+  scene.getObjectByName('dimbox').visible=true;
+}
+function projectDims(){
+  var bx=scene.getObjectByName('dimbox'); if(bx) bx.visible=showDims;
+  if(!showDims) return;
+  var r=renderer.domElement.getBoundingClientRect();
+  dimEls.forEach(function(d){ var v=d.p.clone().project(camera);
+    d.el.style.left=((v.x*0.5+0.5)*r.width)+'px';
+    d.el.style.top=((-v.y*0.5+0.5)*r.height)+'px';
+    d.el.style.opacity=(v.z<1)?'1':'0'; });
+}
+
+function resize(){
+  var v=document.getElementById('view'), w=v.clientWidth, h=v.clientHeight;
+  if(!w||!h) return;
+  renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+}
+var last=0;
+function animate(t){
+  requestAnimationFrame(animate);
+  var dt=Math.min((t-last)/1000||0,0.05); last=t;
+  if(playing){ playT+=dt*0.22; if(playT>=1.15){ playT=0; }
+    explode=Math.min(playT,1); document.getElementById('explode').value=explode*100; applyExplode(); }
+  camera.position.set(
+    orbit.target.x+orbit.r*Math.sin(orbit.phi)*Math.sin(orbit.theta),
+    orbit.target.y+orbit.r*Math.cos(orbit.phi),
+    orbit.target.z+orbit.r*Math.sin(orbit.phi)*Math.cos(orbit.theta));
+  camera.lookAt(orbit.target);
+  projectDims();
+  renderer.render(scene,camera);
+}
+
+fetch('./model.json').then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+  .then(function(p){ init(p); applyExplode(); setView('iso'); })
+  .catch(function(e){ fail('Could not load the model data ('+e.message+').'); });
+})();
+</script>

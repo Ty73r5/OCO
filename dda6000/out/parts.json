@@ -1,0 +1,1433 @@
+{
+ "model": "Megger DDA-6000 Universal Circuit Breaker Test Set",
+ "units": "metres",
+ "envelope_mm": {
+  "w": 1397.0,
+  "d": 711.1999999999999,
+  "h": 1168.3999999999999
+ },
+ "documented_mass_kg": 545.0,
+ "modelled_mass_kg": 565.7,
+ "parts": [
+  {
+   "name": "plinth",
+   "label": "Base skid / plinth",
+   "group": "Structure",
+   "stage": 4,
+   "dir": [
+    0.0,
+    -1.0,
+    -0.0
+   ],
+   "dist": 0.32,
+   "centre": [
+    0.6985,
+    0.25389999999999996,
+    -0.35559999999999997
+   ],
+   "mass": 29.54,
+   "material": "steel",
+   "note": "Welded channel skid with three cross members. Carries the transformer and the caster pads; the low mass concentration here gives the documented low centre of gravity. [DOC: low centre of gravity]"
+  },
+  {
+   "name": "frame",
+   "label": "Internal frame",
+   "group": "Structure",
+   "stage": 4,
+   "dir": [
+    0.0,
+    1.0,
+    -0.0
+   ],
+   "dist": 0.62,
+   "centre": [
+    0.6985,
+    0.7348999999999999,
+    -0.35559999999999997
+   ],
+   "mass": 21.44,
+   "material": "steel",
+   "note": "Corner posts and top rails the skins bolt to. [INF]"
+  },
+  {
+   "name": "caster_fl",
+   "label": "Swivel caster, front-left",
+   "group": "Running gear",
+   "stage": 4,
+   "dir": [
+    0.0,
+    -1.0,
+    -0.0
+   ],
+   "dist": 0.26,
+   "centre": [
+    0.14,
+    0.1097,
+    -0.1376
+   ],
+   "mass": 5.44,
+   "material": "steel",
+   "note": "6 in locking swivel caster. All four swivel and all four lock. [DOC]"
+  },
+  {
+   "name": "tyre_fl",
+   "label": "Caster tyre, front-left",
+   "group": "Running gear",
+   "stage": 4,
+   "dir": [
+    0.0,
+    -1.0,
+    -0.0
+   ],
+   "dist": 0.26,
+   "centre": [
+    0.14,
+    0.0762,
+    -0.153
+   ],
+   "mass": 0.4,
+   "material": "rubber",
+   "note": "Solid tread."
+  },
+  {
+   "name": "caster_fr",
+   "label": "Swivel caster, front-right",
+   "group": "Running gear",
+   "stage": 4,
+   "dir": [
+    0.0,
+    -1.0,
+    -0.0
+   ],
+   "dist": 0.26,
+   "centre": [
+    1.2570000000000001,
+    0.1097,
+    -0.1376
+   ],
+   "mass": 5.44,
+   "material": "steel",
+   "note": "6 in locking swivel caster. All four swivel and all four lock. [DOC]"
+  },
+  {
+   "name": "tyre_fr",
+   "label": "Caster tyre, front-right",
+   "group": "Running gear",
+   "stage": 4,
+   "dir": [
+    0.0,
+    -1.0,
+    -0.0
+   ],
+   "dist": 0.26,
+   "centre": [
+    1.2570000000000001,
+    0.0762,
+    -0.153
+   ],
+   "mass": 0.4,
+   "material": "rubber",
+   "note": "Solid tread."
+  },
+  {
+   "name": "caster_rl",
+   "label": "Swivel caster, rear-left",
+   "group": "Running gear",
+   "stage": 4,
+   "dir": [
+    0.0,
+    -1.0,
+    -0.0
+   ],
+   "dist": 0.26,
+   "centre": [
+    0.14,
+    0.1097,
+    -0.5735999999999999
+   ],
+   "mass": 5.44,
+   "material": "steel",
+   "note": "6 in locking swivel caster. All four swivel and all four lock. [DOC]"
+  },
+  {
+   "name": "tyre_rl",
+   "label": "Caster tyre, rear-left",
+   "group": "Running gear",
+   "stage": 4,
+   "dir": [
+    0.0,
+    -1.0,
+    -0.0
+   ],
+   "dist": 0.26,
+   "centre": [
+    0.14,
+    0.0762,
+    -0.5581999999999999
+   ],
+   "mass": 0.4,
+   "material": "rubber",
+   "note": "Solid tread."
+  },
+  {
+   "name": "caster_rr",
+   "label": "Swivel caster, rear-right",
+   "group": "Running gear",
+   "stage": 4,
+   "dir": [
+    0.0,
+    -1.0,
+    -0.0
+   ],
+   "dist": 0.26,
+   "centre": [
+    1.2570000000000001,
+    0.1097,
+    -0.5735999999999999
+   ],
+   "mass": 5.44,
+   "material": "steel",
+   "note": "6 in locking swivel caster. All four swivel and all four lock. [DOC]"
+  },
+  {
+   "name": "tyre_rr",
+   "label": "Caster tyre, rear-right",
+   "group": "Running gear",
+   "stage": 4,
+   "dir": [
+    0.0,
+    -1.0,
+    -0.0
+   ],
+   "dist": 0.26,
+   "centre": [
+    1.2570000000000001,
+    0.0762,
+    -0.5581999999999999
+   ],
+   "mass": 0.4,
+   "material": "rubber",
+   "note": "Solid tread."
+  },
+  {
+   "name": "tow_ring",
+   "label": "Tow ring",
+   "group": "Running gear",
+   "stage": 4,
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "dist": 0.3,
+   "centre": [
+    0.6985,
+    0.24039999999999997,
+    -0.014499999999999999
+   ],
+   "mass": 2.26,
+   "material": "steel",
+   "note": "Front tow eye for moving the set by hand or by vehicle. [DOC]"
+  },
+  {
+   "name": "lift_eyes",
+   "label": "Lifting eyes (4)",
+   "group": "Running gear",
+   "stage": 1,
+   "dir": [
+    0.0,
+    1.0,
+    -0.0
+   ],
+   "dist": 0.3,
+   "centre": [
+    0.6985,
+    1.2048999999999999,
+    -0.35559999999999997
+   ],
+   "mass": 4.62,
+   "material": "steel",
+   "note": "Four lifting eyes for crane handling. [DOC]"
+  },
+  {
+   "name": "skin_left",
+   "label": "Left side skin",
+   "group": "Enclosure",
+   "stage": 1,
+   "dir": [
+    -1.0,
+    0.0,
+    -0.0
+   ],
+   "dist": 0.62,
+   "centre": [
+    0.00095,
+    0.7348999999999999,
+    -0.35559999999999997
+   ],
+   "mass": 9.15,
+   "material": "steel",
+   "note": "Removable sheet-metal side panel. [DOC: sheet-metal enclosure]"
+  },
+  {
+   "name": "skin_right",
+   "label": "Right side skin",
+   "group": "Enclosure",
+   "stage": 1,
+   "dir": [
+    1.0,
+    0.0,
+    -0.0
+   ],
+   "dist": 0.62,
+   "centre": [
+    1.39605,
+    0.7348999999999999,
+    -0.35559999999999997
+   ],
+   "mass": 9.15,
+   "material": "steel",
+   "note": "Removable sheet-metal side panel. [DOC: sheet-metal enclosure]"
+  },
+  {
+   "name": "skin_back",
+   "label": "Rear skin",
+   "group": "Enclosure",
+   "stage": 1,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "dist": 0.62,
+   "centre": [
+    0.6985,
+    0.7348999999999999,
+    -0.7102499999999999
+   ],
+   "mass": 18.07,
+   "material": "steel",
+   "note": "Rear access panel."
+  },
+  {
+   "name": "rear_grille",
+   "label": "Rear exhaust grille",
+   "group": "Enclosure",
+   "stage": 1,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "dist": 0.7000000000000001,
+   "centre": [
+    0.6985,
+    0.6944,
+    -0.7062999999999999
+   ],
+   "mass": 8.12,
+   "material": "steel",
+   "note": "Cooling-air exhaust. [INF]"
+  },
+  {
+   "name": "skin_top",
+   "label": "Top cover",
+   "group": "Enclosure",
+   "stage": 1,
+   "dir": [
+    0.0,
+    1.0,
+    -0.0
+   ],
+   "dist": 0.72,
+   "centre": [
+    0.6985,
+    1.1674499999999999,
+    -0.35559999999999997
+   ],
+   "mass": 14.82,
+   "material": "steel",
+   "note": "Bolted top cover."
+  },
+  {
+   "name": "skin_front",
+   "label": "Front skin",
+   "group": "Enclosure",
+   "stage": 1,
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "dist": 0.64,
+   "centre": [
+    0.6985,
+    0.7348999999999999,
+    -0.000949999999999955
+   ],
+   "mass": 5.16,
+   "material": "steel",
+   "note": "Front panel with the control-panel aperture, vent bank and output bay."
+  },
+  {
+   "name": "louver_bank",
+   "label": "Front louver bank",
+   "group": "Enclosure",
+   "stage": 1,
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "dist": 0.72,
+   "centre": [
+    0.3975,
+    0.437,
+    -0.0084
+   ],
+   "mass": 2.48,
+   "material": "steel",
+   "note": "Stamped intake louvers. [INF]"
+  },
+  {
+   "name": "panel_recess",
+   "label": "Panel recess shroud",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "dist": 0.42,
+   "centre": [
+    0.6985,
+    0.871,
+    -0.08509880063971564
+   ],
+   "mass": 5.48,
+   "material": "steel",
+   "note": "Formed shroud that sets the panel back and tips it toward the operator. [INF]"
+  },
+  {
+   "name": "panel_plate",
+   "label": "Control panel faceplate",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.52,
+   "centre": [
+    0.6985,
+    0.8709999999999999,
+    -0.11409880063971568
+   ],
+   "mass": 4.65,
+   "material": "alu",
+   "note": "Silkscreened panel carrying every control Megger documents for this set. [DOC]"
+  },
+  {
+   "name": "panel_subchassis",
+   "label": "Panel sub-chassis",
+   "group": "Control panel",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.33,
+   "centre": [
+    0.6985,
+    0.8518881702476263,
+    -0.19075216301551937
+   ],
+   "mass": 14.52,
+   "material": "steel",
+   "note": "Box behind the faceplate holding the meters, DDA-1 module and switch gear. [INF]"
+  },
+  {
+   "name": "meter_amps",
+   "label": "Ammeter display",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    0.256,
+    0.9382983273607973,
+    -0.1257250900485203
+   ],
+   "mass": 0.56,
+   "material": "glass",
+   "note": "5-digit display, 0.281 in (7 mm) numerals. [DOC]"
+  },
+  {
+   "name": "meter_volts",
+   "label": "Voltmeter display",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    0.256,
+    0.8626152607112696,
+    -0.10685518219174625
+   ],
+   "mass": 0.56,
+   "material": "glass",
+   "note": "5-digit display, 0.281 in (7 mm) numerals. [DOC]"
+  },
+  {
+   "name": "meter_timer",
+   "label": "Timer display",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    0.256,
+    0.7869321940617418,
+    -0.08798527433497216
+   ],
+   "mass": 0.56,
+   "material": "glass",
+   "note": "5-digit display, 0.281 in (7 mm) numerals. [DOC]"
+  },
+  {
+   "name": "sel_range",
+   "label": "AMMETER RANGE selector",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.68,
+   "centre": [
+    0.47400000000000003,
+    0.9211958871312288,
+    -0.11036889189123002
+   ],
+   "mass": 0.08,
+   "material": "plastic",
+   "note": "Ranges 200 / 2 000 / 20 000 / 200 000 A, 200 kA default. [DOC]"
+  },
+  {
+   "name": "sel_output",
+   "label": "OUTPUT SELECTOR (coarse)",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.68,
+   "centre": [
+    0.968,
+    0.8435722290291491,
+    -0.09131921930164298
+   ],
+   "mass": 0.17,
+   "material": "plastic",
+   "note": "Multi-position coarse output adjustment. [DOC]"
+  },
+  {
+   "name": "knob_vernier",
+   "label": "VERNIER CONTROL (fine)",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.68,
+   "centre": [
+    1.1280000000000001,
+    0.8436732199536183,
+    -0.09098135368121368
+   ],
+   "mass": 0.07,
+   "material": "plastic",
+   "note": "Fine output adjustment. [DOC]"
+  },
+  {
+   "name": "sw_mode",
+   "label": "AMMETER MODE MEM/CONT",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.7000000000000001,
+   "centre": [
+    0.47672636901871873,
+    0.789043816659302,
+    -0.07789343914951305
+   ],
+   "mass": 0.04,
+   "material": "steel",
+   "note": "[DOC]"
+  },
+  {
+   "name": "sw_breaker",
+   "label": "CIRCUIT BREAKER ON/OFF",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.7000000000000001,
+   "centre": [
+    1.1767263690187189,
+    0.7405290303455022,
+    -0.06579734436952962
+   ],
+   "mass": 0.04,
+   "material": "steel",
+   "note": "[DOC]"
+  },
+  {
+   "name": "btn_start_bezel",
+   "label": "START bezel",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    0.968,
+    0.7285934895373823,
+    -0.0739551084621301
+   ],
+   "mass": 0.01,
+   "material": "plastic",
+   "note": ""
+  },
+  {
+   "name": "btn_start",
+   "label": "START push-button",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.73,
+   "centre": [
+    0.968,
+    0.7300450209109802,
+    -0.06813333410447411
+   ],
+   "mass": 0.01,
+   "material": "plastic",
+   "note": "Energises the output. [DOC]"
+  },
+  {
+   "name": "btn_stop_bezel",
+   "label": "STOP bezel",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    1.05,
+    0.7285934895373823,
+    -0.0739551084621301
+   ],
+   "mass": 0.01,
+   "material": "plastic",
+   "note": ""
+  },
+  {
+   "name": "btn_stop",
+   "label": "STOP push-button",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.73,
+   "centre": [
+    1.05,
+    0.7300450209109802,
+    -0.06813333410447411
+   ],
+   "mass": 0.01,
+   "material": "plastic",
+   "note": "De-energises the output. [DOC]"
+  },
+  {
+   "name": "lamp_energized_bezel",
+   "label": "Lamp bezel",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    0.908,
+    0.9712883820541813,
+    -0.13395043449890903
+   ],
+   "mass": 0.0,
+   "material": "plastic",
+   "note": ""
+  },
+  {
+   "name": "lamp_energized",
+   "label": "OUTPUT ENERGIZED lamp",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.73,
+   "centre": [
+    0.908,
+    0.9722560696365798,
+    -0.13006925159380503
+   ],
+   "mass": 0.0,
+   "material": "plastic",
+   "note": "Operator-safety indicator. [DOC]"
+  },
+  {
+   "name": "lamp_thermwarn_bezel",
+   "label": "Lamp bezel",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    0.986,
+    0.9712883820541813,
+    -0.13395043449890903
+   ],
+   "mass": 0.0,
+   "material": "plastic",
+   "note": ""
+  },
+  {
+   "name": "lamp_thermwarn",
+   "label": "THERMAL WARNING lamp",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.73,
+   "centre": [
+    0.986,
+    0.9722560696365798,
+    -0.13006925159380503
+   ],
+   "mass": 0.0,
+   "material": "plastic",
+   "note": "Operator-safety indicator. [DOC]"
+  },
+  {
+   "name": "lamp_thermshut_bezel",
+   "label": "Lamp bezel",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    1.064,
+    0.9712883820541813,
+    -0.13395043449890903
+   ],
+   "mass": 0.0,
+   "material": "plastic",
+   "note": ""
+  },
+  {
+   "name": "lamp_thermshut",
+   "label": "THERMAL SHUTDOWN lamp",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.73,
+   "centre": [
+    1.064,
+    0.9722560696365798,
+    -0.13006925159380503
+   ],
+   "mass": 0.0,
+   "material": "plastic",
+   "note": "Operator-safety indicator. [DOC]"
+  },
+  {
+   "name": "lamp_ground_bezel",
+   "label": "Lamp bezel",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    1.1420000000000001,
+    0.9712883820541813,
+    -0.13395043449890903
+   ],
+   "mass": 0.0,
+   "material": "plastic",
+   "note": ""
+  },
+  {
+   "name": "lamp_ground",
+   "label": "GROUND INTERLOCK lamp",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.73,
+   "centre": [
+    1.1420000000000001,
+    0.9722560696365798,
+    -0.13006925159380503
+   ],
+   "mass": 0.0,
+   "material": "plastic",
+   "note": "Operator-safety indicator. [DOC]"
+  },
+  {
+   "name": "lamp_overrange_bezel",
+   "label": "Lamp bezel",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    1.22,
+    0.9712883820541813,
+    -0.13395043449890903
+   ],
+   "mass": 0.0,
+   "material": "plastic",
+   "note": ""
+  },
+  {
+   "name": "lamp_overrange",
+   "label": "OVER RANGE lamp",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.73,
+   "centre": [
+    1.22,
+    0.9722560696365798,
+    -0.13006925159380503
+   ],
+   "mass": 0.0,
+   "material": "plastic",
+   "note": "Operator-safety indicator. [DOC]"
+  },
+  {
+   "name": "lcd",
+   "label": "DDA-1 LCD display",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.66,
+   "centre": [
+    0.732,
+    0.8914822106039497,
+    -0.11483860474653527
+   ],
+   "mass": 1.04,
+   "material": "glass",
+   "note": "Menu display for the DDA-1 digital control system. [DOC]"
+  },
+  {
+   "name": "conn_initiate",
+   "label": "EXTERNAL INITIATE receptacle",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.7000000000000001,
+   "centre": [
+    1.218,
+    0.8546057567177074,
+    -0.0976438931518176
+   ],
+   "mass": 0.17,
+   "material": "steel",
+   "note": "Remote initiation of the test set. [DOC]"
+  },
+  {
+   "name": "keypad",
+   "label": "DDA-1 keypad",
+   "group": "Control panel",
+   "stage": 2,
+   "dir": [
+    0.0,
+    0.24192189559966773,
+    0.9702957262759965
+   ],
+   "dist": 0.62,
+   "centre": [
+    0.732,
+    0.7643734704617943,
+    -0.08339136646245582
+   ],
+   "mass": 0.07,
+   "material": "plastic",
+   "note": "Menu navigation keys. [INF]"
+  },
+  {
+   "name": "core",
+   "label": "Transformer core",
+   "group": "Power train",
+   "stage": 4,
+   "dir": [
+    0.0,
+    -1.0,
+    -0.0
+   ],
+   "dist": 0.0,
+   "centre": [
+    0.47000000000000003,
+    0.5164,
+    -0.4
+   ],
+   "mass": 190.45,
+   "material": "lam",
+   "note": "Shell-form grain-oriented silicon-steel stack, centre leg wound. Geometry inferred; sized against the documented 545 kg. [INF]"
+  },
+  {
+   "name": "core_clamps",
+   "label": "Core clamping frame",
+   "group": "Power train",
+   "stage": 4,
+   "dir": [
+    0.0,
+    1.0,
+    -0.0
+   ],
+   "dist": 0.43,
+   "centre": [
+    0.47000000000000003,
+    0.5164,
+    -0.4
+   ],
+   "mass": 13.17,
+   "material": "steel",
+   "note": "Channel clamps and tie rods. [INF]"
+  },
+  {
+   "name": "coil_primary",
+   "label": "Primary winding",
+   "group": "Power train",
+   "stage": 4,
+   "dir": [
+    0.0,
+    1.0,
+    -0.0
+   ],
+   "dist": 0.56,
+   "centre": [
+    0.47000000000000003,
+    0.5164,
+    -0.4
+   ],
+   "mass": 29.74,
+   "material": "copper",
+   "note": "460 V single-phase primary on the centre leg. [DOC: 460 V input]"
+  },
+  {
+   "name": "coil_secondary",
+   "label": "Secondary winding",
+   "group": "Power train",
+   "stage": 4,
+   "dir": [
+    0.0,
+    1.0,
+    -0.0
+   ],
+   "dist": 0.76,
+   "centre": [
+    0.47000000000000003,
+    0.5164,
+    -0.4
+   ],
+   "mass": 63.88,
+   "material": "copper",
+   "note": "Few-turn heavy copper secondary \u2014 the 60 000 A output winding. [DOC: 60 kA]"
+  },
+  {
+   "name": "coil_insulation",
+   "label": "Inter-winding insulation",
+   "group": "Power train",
+   "stage": 4,
+   "dir": [
+    0.0,
+    1.0,
+    -0.0
+   ],
+   "dist": 0.66,
+   "centre": [
+    0.47000000000000003,
+    0.5164,
+    -0.4
+   ],
+   "mass": 1.66,
+   "material": "plastic",
+   "note": "Barrier between primary and secondary."
+  },
+  {
+   "name": "bus_a",
+   "label": "Output bus bar A",
+   "group": "Output",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.876215908676647,
+    0.48191874977215593
+   ],
+   "dist": 0.56,
+   "centre": [
+    0.6055,
+    0.6172000000000001,
+    -0.275
+   ],
+   "mass": 10.21,
+   "material": "copper",
+   "note": "Heavy copper run from the secondary to the front output pad. [INF]"
+  },
+  {
+   "name": "pad_a",
+   "label": "Output terminal pad A",
+   "group": "Output",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "dist": 0.68,
+   "centre": [
+    0.911,
+    0.43,
+    -0.055
+   ],
+   "mass": 6.29,
+   "material": "copper",
+   "note": "Studded pad. Leads bolt here, or the stab adapter board mounts to it. [DOC]"
+  },
+  {
+   "name": "bus_b",
+   "label": "Output bus bar B",
+   "group": "Output",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.876215908676647,
+    0.48191874977215593
+   ],
+   "dist": 0.56,
+   "centre": [
+    0.8755000000000001,
+    0.6172000000000001,
+    -0.275
+   ],
+   "mass": 9.78,
+   "material": "copper",
+   "note": "Heavy copper run from the secondary to the front output pad. [INF]"
+  },
+  {
+   "name": "pad_b",
+   "label": "Output terminal pad B",
+   "group": "Output",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "dist": 0.68,
+   "centre": [
+    1.151,
+    0.43,
+    -0.055
+   ],
+   "mass": 6.29,
+   "material": "copper",
+   "note": "Studded pad. Leads bolt here, or the stab adapter board mounts to it. [DOC]"
+  },
+  {
+   "name": "ct_output",
+   "label": "Output current transformer",
+   "group": "Output",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.33035042472810605,
+    0.9438583563660174
+   ],
+   "dist": 0.46,
+   "centre": [
+    0.9385,
+    0.64,
+    -0.24
+   ],
+   "mass": 10.44,
+   "material": "steel",
+   "note": "Measuring CT. The DDA-1 digitally samples output current from here. [DOC]"
+  },
+  {
+   "name": "terminal_guard",
+   "label": "Output terminal guard",
+   "group": "Output",
+   "stage": 1,
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "dist": 0.52,
+   "centre": [
+    1.031,
+    0.431,
+    0.004
+   ],
+   "mass": 1.27,
+   "material": "plastic",
+   "note": "Hinged insulating guard over the live output pads. [INF]"
+  },
+  {
+   "name": "scr_heatsinks",
+   "label": "SCR heatsinks",
+   "group": "Power train",
+   "stage": 3,
+   "dir": [
+    1.0,
+    0.0,
+    -0.0
+   ],
+   "dist": 0.52,
+   "centre": [
+    1.12,
+    0.5314,
+    -0.42
+   ],
+   "mass": 8.51,
+   "material": "alu",
+   "note": "Extruded aluminium heatsinks clamping the thyristor stack. [INF]"
+  },
+  {
+   "name": "scr_pucks",
+   "label": "Thyristors (press-pack)",
+   "group": "Power train",
+   "stage": 3,
+   "dir": [
+    1.0,
+    0.0,
+    -0.0
+   ],
+   "dist": 0.64,
+   "centre": [
+    1.101,
+    0.5314,
+    -0.42
+   ],
+   "mass": 3.87,
+   "material": "copper",
+   "note": "Press-pack SCRs. The DDA-1 fires these digitally \u2014 variable pulse time and firing angle set the output. [DOC]"
+  },
+  {
+   "name": "scr_clamp",
+   "label": "Stack clamp",
+   "group": "Power train",
+   "stage": 3,
+   "dir": [
+    1.0,
+    0.0,
+    -0.0
+   ],
+   "dist": 0.42,
+   "centre": [
+    1.12,
+    0.5314,
+    -0.42
+   ],
+   "mass": 4.3,
+   "material": "steel",
+   "note": "Maintains press-pack clamping force. [INF]"
+  },
+  {
+   "name": "snubber_pcb",
+   "label": "Gate / snubber board",
+   "group": "Power train",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "dist": 0.42,
+   "centre": [
+    1.12,
+    0.5614,
+    -0.295
+   ],
+   "mass": 0.63,
+   "material": "pcb",
+   "note": "Gate drive and snubber network. [INF]"
+  },
+  {
+   "name": "input_breaker",
+   "label": "Input circuit breaker",
+   "group": "Power train",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "dist": 0.42,
+   "centre": [
+    1.18,
+    0.7214,
+    -0.545
+   ],
+   "mass": 5.64,
+   "material": "plastic",
+   "note": "Main input breaker, operated by the panel CIRCUIT BREAKER switch. [DOC]"
+  },
+  {
+   "name": "input_terminals",
+   "label": "Input terminal block",
+   "group": "Power train",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "dist": 0.46,
+   "centre": [
+    1.18,
+    0.4214,
+    -0.6086999999999999
+   ],
+   "mass": 2.74,
+   "material": "plastic",
+   "note": "460 V single-phase input, 15 ft 4/0 leads (p/n 17163). [DOC]"
+  },
+  {
+   "name": "fan_0",
+   "label": "Cooling fan 1",
+   "group": "Cooling",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "dist": 0.52,
+   "centre": [
+    0.42,
+    0.9383999999999999,
+    -0.60895
+   ],
+   "mass": 2.46,
+   "material": "plastic",
+   "note": "Forced-air cooling. Duty is 30 min on / 30 min off. [DOC]"
+  },
+  {
+   "name": "fan_1",
+   "label": "Cooling fan 2",
+   "group": "Cooling",
+   "stage": 3,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "dist": 0.52,
+   "centre": [
+    0.76,
+    0.9383999999999999,
+    -0.60895
+   ],
+   "mass": 2.46,
+   "material": "plastic",
+   "note": "Forced-air cooling. Duty is 30 min on / 30 min off. [DOC]"
+  },
+  {
+   "name": "control_chassis",
+   "label": "Control electronics chassis",
+   "group": "Control",
+   "stage": 3,
+   "dir": [
+    -0.33035042472810605,
+    0.9438583563660174,
+    -0.0
+   ],
+   "dist": 0.56,
+   "centre": [
+    0.33,
+    1.0184,
+    -0.2366
+   ],
+   "mass": 5.88,
+   "material": "steel",
+   "note": "Houses the DDA-1 DSP control and instrumentation boards. [DOC]"
+  },
+  {
+   "name": "dda1_board",
+   "label": "DDA-1 processor board",
+   "group": "Control",
+   "stage": 4,
+   "dir": [
+    0.0,
+    1.0,
+    -0.0
+   ],
+   "dist": 0.62,
+   "centre": [
+    0.33,
+    1.0253999999999999,
+    -0.2325
+   ],
+   "mass": 0.99,
+   "material": "pcb",
+   "note": "Digital signal processing: full digital SCR control and digital sampling of the output current. [DOC]"
+  },
+  {
+   "name": "psu",
+   "label": "Control power supply",
+   "group": "Control",
+   "stage": 3,
+   "dir": [
+    0.2873478855663454,
+    0.9578262852211513,
+    -0.0
+   ],
+   "dist": 0.38,
+   "centre": [
+    0.64,
+    0.9983999999999998,
+    -0.2307
+   ],
+   "mass": 1.15,
+   "material": "steel",
+   "note": "Low-voltage supply for the control system. [INF]"
+  },
+  {
+   "name": "wiring",
+   "label": "Control and power wiring",
+   "group": "Control",
+   "stage": 4,
+   "dir": [
+    0.0,
+    1.0,
+    -0.0
+   ],
+   "dist": 0.3,
+   "centre": [
+    0.7327103965107008,
+    0.6656683980347943,
+    -0.32713128898899346
+   ],
+   "mass": 7.62,
+   "material": "copper",
+   "note": "Representative cable runs. [INF]"
+  },
+  {
+   "name": "stab_board",
+   "label": "Stab adapter board",
+   "group": "Accessories",
+   "stage": 1,
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "dist": 0.76,
+   "centre": [
+    1.031,
+    0.45,
+    0.1905
+   ],
+   "mass": 6.65,
+   "material": "copper",
+   "note": "Stab adapter board for drawout metal-clad breakers; used with the CBS-1 and CBS-2 stab sets. Lower loss than bolted leads. [DOC]"
+  }
+ ]
+}
